@@ -1,0 +1,158 @@
+/* ================= FULL SCREEN ================= */
+ion-content {
+  --background: #0f172a;
+}
+
+/* container isi 1 layar */
+.employees-container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 16px;
+}
+
+/* ================= HEADER ================= */
+.header-card {
+  text-align: center;
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  p {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #9ca3af;
+  }
+}
+
+/* ================= FILTER ================= */
+.filter-card {
+  width: 100%;
+}
+
+.filter-card ion-item {
+  --background: #020617;
+  border: 1px solid #1f2933;
+  border-radius: 12px;
+  padding: 6px 12px;
+}
+
+.filter-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #9ca3af;
+}
+
+/* ================= LIST AREA (FILL SPACE) ================= */
+.employees-container > div:last-child,
+.employees-container > ion-card:last-child {
+  flex: 1; /* isi sisa tinggi layar */
+}
+
+/* ================= STATION CARD ================= */
+.station-card {
+  background: #020617;
+  border-radius: 14px;
+}
+
+/* header stasiun */
+.station-header {
+  padding: 12px 16px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    ion-icon {
+      color: #60a5fa;
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 12px;
+    color: #9ca3af;
+  }
+}
+
+/* ================= EMPLOYEE ITEM ================= */
+.employee-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #1f2933;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.employee-info h4 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* detail grid */
+.employee-details {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 4px 14px;
+}
+
+.detail-item {
+  margin: 0;
+  font-size: 12px;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  ion-icon {
+    font-size: 14px;
+    color: #6b7280;
+  }
+}
+
+.detail-item.address {
+  grid-column: span 2;
+}
+
+/* status */
+.employee-status {
+  display: flex;
+  align-items: center;
+}
+
+/* ================= EMPTY STATE ================= */
+.empty-state {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #020617;
+
+  ion-icon {
+    font-size: 48px;
+    color: #6b7280;
+  }
+
+  p {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #9ca3af;
+  }
+}

@@ -1,0 +1,126 @@
+/* ================= FULL SCREEN ================= */
+ion-content {
+  --background: #0f172a;
+}
+
+/* container isi penuh layar */
+.add-employee-container {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* tengah vertikal */
+  padding: 20px;
+}
+
+/* wrapper agar rapi di tengah */
+.add-employee-container > ion-card {
+  width: 100%;
+}
+
+/* ================= HEADER CARD ================= */
+.header-card {
+  text-align: center;
+  margin-bottom: 16px;
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  p {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #9ca3af;
+  }
+}
+
+/* ================= FORM CARD ================= */
+.form-card {
+  flex: 1; /* isi ruang tengah */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* isi form */
+.form-card ion-card-content {
+  padding: 20px;
+}
+
+/* ================= FIELD ================= */
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.required {
+  color: #f87171;
+}
+
+/* box input */
+.form-item {
+  --background: #020617;
+  border: 1px solid #1f2933;
+  border-radius: 10px;
+  padding: 4px 12px;
+
+  &:focus-within {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+  }
+}
+
+/* input */
+ion-input,
+ion-textarea,
+ion-select {
+  font-size: 15px;
+  color: #f9fafb;
+}
+
+/* textarea tinggi */
+.form-item.textarea ion-textarea {
+  min-height: 100px;
+}
+
+/* ================= BUTTON ================= */
+.submit-button {
+  margin-top: 24px;
+  height: 50px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 12px;
+
+  --background: linear-gradient(135deg, #22c55e, #16a34a);
+  --background-activated: #15803d;
+  --box-shadow: 0 8px 22px rgba(34, 197, 94, 0.45);
+}
+
+/* ================= INFO CARD ================= */
+.info-card {
+  margin-top: 16px;
+  background: #020617;
+  border-left: 4px solid #3b82f6;
+
+  p {
+    margin: 0;
+    font-size: 13px;
+    color: #c7d2fe;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  ion-icon {
+    font-size: 18px;
+    color: #60a5fa;
+  }
+}

@@ -1,0 +1,266 @@
+/* ================= FULL SCREEN ================= */
+ion-content {
+  --background: #0f172a;
+}
+
+/* ================= CONTAINER ================= */
+.reports-container {
+  min-height: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ================= HEADER ================= */
+.header-card {
+  text-align: center;
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  p {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #9ca3af;
+  }
+}
+
+/* ================= STATS GRID ================= */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* ================= STATS CARD ================= */
+.stats-card {
+  background: #020617;
+  border-radius: 14px;
+
+  ion-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    ion-icon {
+      color: #60a5fa;
+    }
+  }
+}
+
+/* isi statistik */
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dashed #1f2933;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #d1d5db;
+}
+
+.stat-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: #22c55e;
+}
+
+/* ================= HISTORY ================= */
+.history-card {
+  background: #020617;
+  border-radius: 14px;
+}
+
+/* header riwayat */
+.history-header {
+  padding: 12px 16px 6px;
+
+  h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    ion-icon {
+      color: #60a5fa;
+    }
+  }
+}
+
+/* ================= EMPTY HISTORY ================= */
+.empty-history {
+  text-align: center;
+  padding: 24px 0;
+
+  ion-icon {
+    font-size: 42px;
+    color: #6b7280;
+  }
+
+  p {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #9ca3af;
+  }
+}
+
+/* ================= HISTORY ITEM ================= */
+.history-item {
+  padding: 16px 0;
+  border-bottom: 1px solid #1f2933;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+/* header tanggal */
+.date-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* info tanggal */
+.date-info {
+  h4 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 2px 0 0;
+    font-size: 12px;
+    color: #9ca3af;
+  }
+}
+
+/* persentase */
+.percentage {
+  text-align: right;
+
+  .percentage-value {
+    font-size: 20px;
+    font-weight: 800;
+    color: #22c55e;
+  }
+
+  .percentage-label {
+    font-size: 11px;
+    color: #9ca3af;
+  }
+}
+
+/* ================= BOX STAT ================= */
+.stats-boxes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.stats-box {
+  background: #020617;
+  border: 1px solid #1f2933;
+  border-radius: 12px;
+  padding: 10px;
+
+  .box-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .box-value {
+    margin-top: 6px;
+    font-size: 20px;
+    font-weight: 800;
+  }
+}
+
+.stats-box.hadir {
+  .box-header ion-icon {
+    color: #22c55e;
+  }
+  .box-value {
+    color: #22c55e;
+  }
+}
+
+.stats-box.tidak {
+  .box-header ion-icon {
+    color: #f87171;
+  }
+  .box-value {
+    color: #f87171;
+  }
+}
+
+/* ================= PROGRESS BAR ================= */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #1f2933;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #60a5fa);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+/* ================= INFO CARD ================= */
+.info-card {
+  background: #020617;
+  border-left: 4px solid #60a5fa;
+
+  p {
+    margin: 0;
+    font-size: 13px;
+    color: #c7d2fe;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  ion-icon {
+    font-size: 18px;
+    color: #60a5fa;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .date-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .percentage {
+    text-align: left;
+  }
+}

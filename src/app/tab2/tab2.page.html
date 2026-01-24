@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Data Karyawan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="employees-container">
+    <!-- Header Card -->
+    <ion-card class="header-card">
+      <ion-card-content>
+        <h1>Data Karyawan</h1>
+        <p>Total {{ employees.length }} karyawan terdaftar</p>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Filter Card -->
+    <ion-card class="filter-card">
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-label position="stacked" class="filter-label">
+            Filter Berdasarkan Stasiun
+          </ion-label>
+          <ion-select
+            [(ngModel)]="selectedStation"
+            (ionChange)="filterEmployees()"
+            interface="popover"
+          >
+            <ion-select-option
+              *ngFor="let station of stations"
+              [value]="station"
+            >
+              {{ station }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Employee List by Station -->
+    <div *ngFor="let station of stations">
+      <div
+        *ngIf="getStationEmployees(station).length > 0 && (selectedStation === 'Semua' || selectedStation === station)"
+      >
+        <ion-card class="station-card">
+          <div class="station-header">
+            <h3>
+              <ion-icon name="location-outline"></ion-icon>
+              {{ station }}
+            </h3>
+            <p>{{ getStationEmployees(station).length }} karyawan</p>
+          </div>
+
+          <ion-card-content>
+            <div
+              class="employee-item"
+              *ngFor="let employee of getStationEmployees(station)"
+            >
+              <div class="employee-info">
+                <h4>{{ employee.nama }}</h4>
+                <div class="employee-details">
+                  <p class="detail-item">
+                    <ion-icon name="id-card-outline"></ion-icon>
+                    NIK: {{ employee.nik }}
+                  </p>
+
+                  <p class="detail-item">
+                    <ion-icon name="call-outline"></ion-icon>
+                    {{ employee.nohp }}
+                  </p>
+
+                  <p class="detail-item">
+                    <ion-icon name="mail-outline"></ion-icon>
+                    {{ employee.email }}
+                  </p>
+
+                  <p class="detail-item">
+                    <ion-icon name="briefcase-outline"></ion-icon>
+                    {{ employee.jabatan }}
+                  </p>
+
+                  <p class="detail-item address">
+                    <ion-icon name="location-outline"></ion-icon>
+                    {{ employee.alamat }}
+                  </p>
+                </div>
+              </div>
+
+              <div class="employee-status">
+                <ion-badge [color]="getStatusColor(employee.id)">
+                  {{ getStatusText(employee.id) }}
+                </ion-badge>
+
+                <!-- 🔴 TOMBOL HAPUS -->
+                <ion-button
+                  size="small"
+                  fill="clear"
+                  color="danger"
+                  (click)="deleteEmployee(employee.id)"
+                >
+                  <ion-icon name="trash-outline"></ion-icon>
+                </ion-button>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <ion-card *ngIf="filteredEmployees.length === 0" class="empty-state">
+      <ion-card-content>
+        <ion-icon name="people-outline"></ion-icon>
+        <p>Belum ada data karyawan</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

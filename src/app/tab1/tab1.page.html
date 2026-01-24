@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>Dashboard Absensi</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="dashboard-container">
+    <!-- Header Card -->
+    <ion-card class="header-card">
+      <ion-card-content>
+        <h1>Dashboard Absensi</h1>
+        <p class="date-info">
+          <ion-icon name="calendar-outline"></ion-icon>
+          {{ todayDate }}
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Statistics Cards -->
+    <div class="stats-grid">
+      <ion-card class="stat-card blue">
+        <ion-card-content>
+          <div class="stat-content">
+            <div class="stat-info">
+              <p class="stat-label">Total Karyawan</p>
+              <h2 class="stat-value">{{ stats.total }}</h2>
+            </div>
+            <div class="stat-icon blue-bg">
+              <ion-icon name="people-outline"></ion-icon>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="stat-card green">
+        <ion-card-content>
+          <div class="stat-content">
+            <div class="stat-info">
+              <p class="stat-label">Hadir Hari Ini</p>
+              <h2 class="stat-value">{{ stats.hadir }}</h2>
+            </div>
+            <div class="stat-icon green-bg">
+              <ion-icon name="checkmark-circle-outline"></ion-icon>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="stat-card red">
+        <ion-card-content>
+          <div class="stat-content">
+            <div class="stat-info">
+              <p class="stat-label">Tidak Hadir</p>
+              <h2 class="stat-value">{{ stats.tidak }}</h2>
+            </div>
+            <div class="stat-icon red-bg">
+              <ion-icon name="close-circle-outline"></ion-icon>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <!-- Station Statistics -->
+    <ion-card class="station-stats-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="bar-chart-outline"></ion-icon>
+          Statistik per Stasiun
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="station-list" *ngFor="let station of stations">
+          <div class="station-header">
+            <span class="station-name">{{ station }}</span>
+            <span class="station-percentage">
+              {{ getStationAttendance(station).hadir }}/{{
+              getStationAttendance(station).total }} ({{
+              getStationPercentage(station) }}%)
+            </span>
+          </div>
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              [style.width.%]="getStationPercentage(station)"
+              [ngClass]="getProgressColor(station)"
+            ></div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

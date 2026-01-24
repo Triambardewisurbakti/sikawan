@@ -1,0 +1,173 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title>Tambah Karyawan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="add-employee-container">
+    <!-- Header Card -->
+    <ion-card class="header-card">
+      <ion-card-content>
+        <h1>Tambah Karyawan</h1>
+        <p>Lengkapi form untuk menambah karyawan baru</p>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Form Card -->
+    <ion-card class="form-card">
+      <ion-card-content>
+        <form #employeeForm="ngForm" (ngSubmit)="handleSubmit()">
+          <!-- Nama -->
+          <div class="form-group">
+            <ion-label class="form-label">
+              Nama Lengkap <span class="required">*</span>
+            </ion-label>
+            <ion-item lines="none" class="form-item">
+              <ion-input
+                [(ngModel)]="formData.nama"
+                name="nama"
+                type="text"
+                placeholder="Masukkan nama lengkap"
+                required
+              ></ion-input>
+            </ion-item>
+          </div>
+
+          <!-- NIK -->
+          <div class="form-group">
+            <ion-label class="form-label">
+              NIK (Nomor Induk Karyawan) <span class="required">*</span>
+            </ion-label>
+            <ion-item lines="none" class="form-item">
+              <ion-input
+                [(ngModel)]="formData.nik"
+                name="nik"
+                type="text"
+                placeholder="Masukkan NIK"
+                required
+              ></ion-input>
+            </ion-item>
+          </div>
+
+          <!-- NO HP -->
+          <div class="form-group">
+            <ion-label class="form-label">
+              No. HP <span class="required">*</span>
+            </ion-label>
+            <ion-item lines="none" class="form-item">
+              <ion-input
+                [(ngModel)]="formData.nohp"
+                name="nohp"
+                type="tel"
+                inputmode="numeric"
+                placeholder="Contoh: 08123456789"
+                required
+              ></ion-input>
+            </ion-item>
+          </div>
+
+          <!-- EMAIL -->
+          <div class="form-group">
+            <ion-label class="form-label">
+              Email <span class="required">*</span>
+            </ion-label>
+            <ion-item lines="none" class="form-item">
+              <ion-input
+                [(ngModel)]="formData.email"
+                name="email"
+                type="email"
+                placeholder="Contoh: nama@email.com"
+                required
+              ></ion-input>
+            </ion-item>
+          </div>
+
+          <!-- Alamat -->
+          <div class="form-group">
+            <ion-label class="form-label">
+              Alamat Lengkap <span class="required">*</span>
+            </ion-label>
+            <ion-item lines="none" class="form-item textarea">
+              <ion-textarea
+                [(ngModel)]="formData.alamat"
+                name="alamat"
+                placeholder="Masukkan alamat lengkap"
+                rows="3"
+                required
+              ></ion-textarea>
+            </ion-item>
+          </div>
+
+          <!-- Jabatan -->
+          <div class="form-group">
+            <ion-label class="form-label">
+              Jabatan <span class="required">*</span>
+            </ion-label>
+            <ion-item lines="none" class="form-item">
+              <ion-select
+                [(ngModel)]="formData.jabatan"
+                name="jabatan"
+                placeholder="Pilih Jabatan"
+                interface="action-sheet"
+                required
+              >
+                <ion-select-option
+                  *ngFor="let position of positions"
+                  [value]="position"
+                >
+                  {{ position }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
+
+          <!-- Stasiun -->
+          <div class="form-group">
+            <ion-label class="form-label">
+              Stasiun Kerja <span class="required">*</span>
+            </ion-label>
+            <ion-item lines="none" class="form-item">
+              <ion-select
+                [(ngModel)]="formData.stasiun"
+                name="stasiun"
+                placeholder="Pilih Stasiun"
+                interface="action-sheet"
+                required
+              >
+                <ion-select-option
+                  *ngFor="let station of stations"
+                  [value]="station"
+                >
+                  {{ station }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
+
+          <!-- Submit -->
+          <ion-button
+            expand="block"
+            type="submit"
+            class="submit-button"
+            [disabled]="!employeeForm.valid"
+          >
+            <ion-icon name="person-add-outline" slot="start"></ion-icon>
+            Simpan Data Karyawan
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Info Card -->
+    <ion-card class="info-card">
+      <ion-card-content>
+        <p>
+          <ion-icon name="bulb-outline"></ion-icon>
+          <strong>Tips:</strong> Pastikan semua data yang dimasukkan sudah benar
+          sebelum menyimpan.
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

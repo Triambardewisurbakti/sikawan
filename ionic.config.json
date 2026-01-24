@@ -1,0 +1,7 @@
+{
+  "name": "Sikawan",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

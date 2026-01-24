@@ -1,0 +1,162 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>Laporan Absensi</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="reports-container">
+    <!-- ================= HEADER ================= -->
+    <ion-card class="header-card">
+      <ion-card-content>
+        <h1>Laporan Absensi</h1>
+        <p>Riwayat dan statistik kehadiran karyawan</p>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- ================= FILTER ================= -->
+    <ion-card class="filter-card">
+      <!-- Filter Stasiun -->
+      <ion-item>
+        <ion-icon name="business-outline" slot="start"></ion-icon>
+        <ion-label>Filter Stasiun</ion-label>
+        <ion-select
+          [(ngModel)]="selectedStation"
+          (ionChange)="applyFilter()"
+          placeholder="Semua Stasiun"
+        >
+          <ion-select-option *ngFor="let s of stations" [value]="s">
+            {{ s }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Filter Tanggal -->
+      <ion-item>
+        <ion-icon name="calendar-outline" slot="start"></ion-icon>
+        <ion-label>Pilih Tanggal</ion-label>
+        <ion-datetime
+          presentation="date"
+          display-format="YYYY-MM-DD"
+          [(ngModel)]="selectedDate"
+          (ionChange)="onDateChange($event)"
+        ></ion-datetime>
+      </ion-item>
+
+      <ion-button expand="block" fill="outline" (click)="resetFilter()">
+        Reset Filter
+      </ion-button>
+    </ion-card>
+
+    <!-- ================= RIWAYAT ABSENSI ================= -->
+    <ion-card class="history-card">
+      <div class="history-header">
+        <h3>
+          <ion-icon name="calendar-outline"></ion-icon>
+          Riwayat Absensi Harian
+        </h3>
+        <p *ngIf="selectedStation !== 'Semua'">
+          Stasiun: <b>{{ selectedStation }}</b>
+        </p>
+      </div>
+
+      <!-- Jika kosong -->
+      <ion-card-content *ngIf="filteredDates.length === 0">
+        <div class="empty-history">
+          <ion-icon name="bar-chart-outline"></ion-icon>
+          <p>Tidak ada data absensi</p>
+        </div>
+      </ion-card-content>
+
+      <!-- Jika ada data -->
+      <ion-card-content *ngIf="filteredDates.length > 0">
+        <div class="history-item" *ngFor="let date of filteredDates">
+          <!-- Header Tanggal -->
+          <div class="date-header">
+            <div class="date-info">
+              <h4>{{ date }}</h4>
+              <p>Total Absen: {{ getDateStats(date).total }}</p>
+            </div>
+
+            <div class="percentage">
+              <div class="percentage-value">{{ getDatePercentage(date) }}%</div>
+              <div class="percentage-label">Kehadiran</div>
+            </div>
+          </div>
+
+          <!-- Statistik -->
+          <div class="stats-boxes">
+            <div class="stats-box hadir">
+              <div class="box-header">
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                <span>Hadir</span>
+              </div>
+              <div class="box-value">{{ getDateStats(date).hadir }}</div>
+            </div>
+
+            <div class="stats-box tidak">
+              <div class="box-header">
+                <ion-icon name="close-circle-outline"></ion-icon>
+                <span>Tidak Hadir</span>
+              </div>
+              <div class="box-value">{{ getDateStats(date).tidak }}</div>
+            </div>
+          </div>
+
+          <!-- Progress -->
+          <div class="progress-bar">
+            <div
+              class="progress-fill"
+              [style.width.%]="getDatePercentage(date)"
+            ></div>
+          </div>
+
+          <!-- ================= DETAIL KARYAWAN ================= -->
+          <ion-list>
+            <ion-item
+              *ngFor="
+                let emp of getAttendanceByStation(date) | keyvalue
+              "
+            >
+              <ion-label>
+                <h3>{{ getEmployeeName(emp.key) }}</h3>
+                <p>Status: {{ emp.value }}</p>
+              </ion-label>
+
+              <ion-badge
+                slot="end"
+                [color]="emp.value === 'hadir' ? 'success' : 'danger'"
+              >
+                {{ emp.value }}
+              </ion-badge>
+
+              <ion-button
+                slot="end"
+                color="danger"
+                size="small"
+                fill="clear"
+                (click)="deleteAttendance(date, emp.key)"
+              >
+                <ion-icon name="trash-outline"></ion-icon>
+              </ion-button>
+            </ion-item>
+          </ion-list>
+
+          <hr class="divider" />
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- ================= INFO ================= -->
+    <ion-card class="info-card">
+      <ion-card-content>
+        <p>
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <strong>Info:</strong>
+          Data absensi tersimpan di database <b>pabrik</b> dan aman meskipun
+          aplikasi ditutup.
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

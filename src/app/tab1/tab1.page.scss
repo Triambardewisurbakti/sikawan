@@ -1,0 +1,212 @@
+/* ================= BACKGROUND FULL (TAB3 STYLE) ================= */
+:host {
+  --ion-background-color: #0f172a;
+}
+
+ion-content {
+  --background: #0f172a;
+}
+
+/* ================= CONTAINER ================= */
+.dashboard-container {
+  min-height: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ================= GLOBAL CARD ================= */
+ion-card {
+  background: #020617;
+  color: #f9fafb;
+  border-radius: 14px;
+  border: 1px solid #1f2933;
+}
+
+/* ================= HEADER CARD ================= */
+.header-card {
+  text-align: center;
+
+  h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #f9fafb;
+  }
+
+  .date-info {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #9ca3af;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+
+    ion-icon {
+      font-size: 16px;
+      color: #60a5fa;
+    }
+  }
+}
+
+/* ================= STATS GRID ================= */
+.stats-grid {
+  display: grid;
+  gap: 12px;
+}
+
+/* ================= STAT CARD ================= */
+.stat-card {
+  background: #020617;
+  border: 1px solid #1f2933;
+  border-radius: 14px;
+
+  .stat-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .stat-info {
+    .stat-label {
+      margin: 0;
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    .stat-value {
+      margin: 4px 0 0;
+      font-size: 26px;
+      font-weight: 800;
+    }
+  }
+
+  .stat-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ion-icon {
+      font-size: 22px;
+      color: #fff;
+    }
+  }
+}
+
+/* ================= STAT COLORS ================= */
+.stat-card.blue .stat-value {
+  color: #60a5fa;
+}
+
+.stat-card.green .stat-value {
+  color: #22c55e;
+}
+
+.stat-card.red .stat-value {
+  color: #f87171;
+}
+
+.blue-bg {
+  background: #1e40af;
+}
+
+.green-bg {
+  background: #166534;
+}
+
+.red-bg {
+  background: #7f1d1d;
+}
+
+/* ================= STATION STATS ================= */
+.station-stats-card {
+  margin-top: 8px;
+
+  ion-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #f9fafb;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    ion-icon {
+      color: #60a5fa;
+    }
+  }
+}
+
+/* ================= STATION LIST ================= */
+.station-list {
+  margin-bottom: 14px;
+}
+
+/* header stasiun */
+.station-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+
+  .station-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e5e7eb;
+  }
+
+  .station-percentage {
+    font-size: 12px;
+    color: #9ca3af;
+  }
+}
+
+/* ================= PROGRESS BAR ================= */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #020617;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid #1f2933;
+}
+
+.progress-fill {
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+.progress-success {
+  background-color: #22c55e !important;
+}
+
+.progress-warning {
+  background-color: #facc15 !important;
+}
+
+.progress-danger {
+  background-color: #ef4444 !important;
+}
+
+/* ================= RESPONSIVE GRID ================= */
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1025px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -1,0 +1,144 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>Absensi Harian</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="attendance-container">
+    <!-- Header Card -->
+    <ion-card class="header-card">
+      <ion-card-content>
+        <h1>Absensi Harian</h1>
+        <p>
+          <ion-icon name="calendar-outline"></ion-icon>
+          {{ todayDate }}
+        </p>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- ================= KALENDER HARIAN ================= -->
+    <ion-card class="filter-card">
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-icon name="calendar-outline" slot="start"></ion-icon>
+          <ion-label position="stacked">Pilih Tanggal Absensi</ion-label>
+          <ion-datetime
+            presentation="date"
+            [(ngModel)]="selectedDate"
+            (ionChange)="onDateChange($event)"
+          ></ion-datetime>
+        </ion-item>
+
+        <ion-button
+          expand="block"
+          fill="outline"
+          (click)="setToday()"
+          style="margin-top: 10px"
+        >
+          Hari Ini
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Filter Stasiun -->
+    <ion-card class="filter-card">
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-label position="stacked">Filter Berdasarkan Stasiun</ion-label>
+          <ion-select [(ngModel)]="selectedStation">
+            <ion-select-option
+              *ngFor="let station of stations"
+              [value]="station"
+            >
+              {{ station }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Absensi per Stasiun -->
+    <div *ngFor="let station of stations">
+      <div
+        *ngIf="
+          getStationEmployees(station).length > 0 &&
+          (selectedStation === 'Semua' || selectedStation === station)
+        "
+      >
+        <ion-card class="station-card">
+          <div class="station-header">
+            <h3>
+              <ion-icon name="location-outline"></ion-icon>
+              {{ station }}
+            </h3>
+            <p>{{ getStationEmployees(station).length }} karyawan</p>
+          </div>
+
+          <ion-card-content>
+            <div
+              class="attendance-item"
+              *ngFor="let employee of getStationEmployees(station)"
+            >
+              <div class="employee-header">
+                <div class="employee-info">
+                  <h4>{{ employee.nama }}</h4>
+                  <p>{{ employee.nik }} • {{ employee.jabatan }}</p>
+                </div>
+
+                <ion-badge
+                  *ngIf="getAttendanceStatus(employee.id)"
+                  [color]="getStatusColor(employee.id)"
+                >
+                  <ion-icon [name]="getStatusIcon(employee.id)"></ion-icon>
+                  {{ getStatusText(employee.id) }}
+                </ion-badge>
+              </div>
+
+              <div class="attendance-buttons">
+                <ion-button
+                  expand="block"
+                  [color]="
+                    getAttendanceStatus(employee.id) === 'hadir'
+                      ? 'success'
+                      : 'light'
+                  "
+                  [disabled]="getAttendanceStatus(employee.id) !== null"
+                  (click)="handleAttendance(employee.id, 'hadir')"
+                >
+                  <ion-icon
+                    name="checkmark-circle-outline"
+                    slot="start"
+                  ></ion-icon>
+                  Hadir
+                </ion-button>
+
+                <ion-button
+                  expand="block"
+                  [color]="
+                    getAttendanceStatus(employee.id) === 'tidak'
+                      ? 'danger'
+                      : 'light'
+                  "
+                  [disabled]="getAttendanceStatus(employee.id) !== null"
+                  (click)="handleAttendance(employee.id, 'tidak')"
+                >
+                  <ion-icon name="close-circle-outline" slot="start"></ion-icon>
+                  Tidak Hadir
+                </ion-button>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+
+    <!-- Empty -->
+    <ion-card *ngIf="employees.length === 0">
+      <ion-card-content>
+        <ion-icon name="clipboard-outline"></ion-icon>
+        <p>Belum ada data karyawan</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

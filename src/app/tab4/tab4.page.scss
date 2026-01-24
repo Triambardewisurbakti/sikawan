@@ -1,0 +1,172 @@
+/* ================= FULL SCREEN ================= */
+ion-content {
+  --background: #0f172a;
+}
+
+/* ================= CONTAINER ================= */
+.attendance-container {
+  min-height: 100%;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ================= HEADER ================= */
+.header-card {
+  text-align: center;
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  p {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #9ca3af;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+
+    ion-icon {
+      color: #fbbf24;
+    }
+  }
+}
+
+/* ================= FILTER ================= */
+.filter-card ion-item {
+  --background: #020617;
+  border: 1px solid #1f2933;
+  border-radius: 12px;
+  padding: 6px 12px;
+}
+
+.filter-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #9ca3af;
+}
+
+/* ================= STATION CARD ================= */
+.station-card {
+  background: #020617;
+  border-radius: 14px;
+}
+
+/* header stasiun */
+.station-header {
+  padding: 12px 16px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    ion-icon {
+      color: #fbbf24;
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 12px;
+    color: #9ca3af;
+  }
+}
+
+/* ================= ATTENDANCE ITEM ================= */
+.attendance-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #1f2933;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+/* header karyawan */
+.employee-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+/* info karyawan */
+.employee-info h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.employee-info p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* badge status */
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+}
+
+/* ================= BUTTONS ================= */
+.attendance-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.attendance-btn {
+  height: 40px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 10px;
+}
+
+/* ================= EMPTY STATE ================= */
+.empty-state {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #020617;
+
+  ion-icon {
+    font-size: 48px;
+    color: #6b7280;
+  }
+
+  p {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #9ca3af;
+  }
+}
+
+@media (max-width: 768px) {
+  .employee-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .attendance-buttons {
+    grid-template-columns: 1fr;
+  }
+}
