@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  private URL_API = 'http://localhost/pabrik_api';
+  private URL_API = 'https://sikawan.rplbc-23.com/pabrik_api';
 
   private jsonHeaders = {
     headers: new HttpHeaders({

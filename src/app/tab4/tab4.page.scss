@@ -170,3 +170,33 @@ ion-content {
     grid-template-columns: 1fr;
   }
 }
+
+/* ================= FIX LABEL ANDROID ================= */
+.filter-card ion-item ion-label {
+  color: #ffffff !important;
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 1 !important;
+}
+
+/* isi select */
+.filter-card ion-select {
+  color: #ffffff;
+  font-size: 15px;
+}
+
+/* isi datetime */
+.filter-card ion-datetime {
+  color: #ffffff;
+  font-size: 15px;
+}
+
+/* placeholder / value */
+ion-select::part(text) {
+  color: #ffffff;
+}
+
+/* ================= ANDROID SHADOW FIX ================= */
+ion-item::part(native) {
+  color: #ffffff;
+}

@@ -156,3 +156,45 @@ ion-content {
     color: #9ca3af;
   }
 }
+
+/* ================= EMPLOYEE ITEM ================= */
+.employee-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #1f2933;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.employee-info {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ================= STATUS & ACTION ================= */
+.employee-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+/* ================= ANDROID / MOBILE ================= */
+@media (max-width: 480px) {
+  .employee-item {
+    flex-direction: column;
+  }
+
+  .employee-status {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+  }
+
+  .employee-status ion-button {
+    padding: 6px;
+    min-width: 36px;
+  }
+}
